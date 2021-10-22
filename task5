@@ -1,0 +1,44 @@
+//5) Реализуйте сортировку массива вставками. (массив из целых чисел).
+
+#include <iostream>
+using namespace std;
+
+void sort(int* array, int size) //функция сортировки массива вставками
+{
+	int currItem, prevIndex, supIndex;
+	for (int i = 1; i < size; i++)
+	{
+		currItem = array[i];
+		prevIndex = i - 1;
+		supIndex = i;
+		while (prevIndex >= 0 && currItem < array[prevIndex]) //пока предыдущий индекс <= 0 мы просматриваем массив вниз
+		{
+			array[supIndex] = array[prevIndex]; //если данный элемент меньше предыдущего, то мы ставим на его место предыдущий
+			array[prevIndex] = currItem; //а на место предыдущего ставим текущий элемент, тем самым сортируем весь массив по возрастанию
+			supIndex--;
+			prevIndex--;
+		}
+	}
+}
+
+int main()
+{
+	int n;
+
+	cout << "Enter array size: " << endl;
+	cin >> n; // Выбор размера массива
+
+	int* a = new int[n];
+
+	cout << "Enter array: " << endl; 
+	for (int i = 0; i < n; i++) // Цикл для ввода массива
+		cin >> a[i];
+
+	sort(a, n); // вызов функции сортировки массива
+
+	cout << "Sorted array: " << endl;
+	for (int i = 0; i < n; i++)
+		cout << a[i];
+
+	return 0;
+}
