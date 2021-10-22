@@ -1,0 +1,28 @@
+//6) Создайте программу, позволяющую находить в строке подстроку и заменять её на другую
+//произвольную подстроку в каждом месте обнаружения.
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+
+    int i = 0;
+    string stroka, podstroka, rep;
+
+    cout << "Введите строку: " << endl;
+    cin >> stroka;
+    cout << "\nВведите подстроку: " << endl;
+    cin >> podstroka;
+    cout << "\nВедите на какую подстроку заменить: " << endl;
+    cin >> rep;
+
+    for (i = stroka.find(podstroka, i++); i != string::npos; i = stroka.find(podstroka, i + 1)) // Цикл поиска подстроки (podstroka) в строке (stroka)
+    {
+        stroka.replace(i, podstroka.size(), rep);  // Замена подстроки (podstroka) на подстроку (rep) введённую с клавиатуры
+    }
+
+    cout << "\nИзменённая строка: " << stroka << endl;
+}
